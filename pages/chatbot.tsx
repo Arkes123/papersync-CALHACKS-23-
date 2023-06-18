@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios'
-import { spawn } from 'child_process'
 
 // message contents
 interface Message {
@@ -12,19 +11,12 @@ interface Message {
 const Chatbot: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const pythonProcess = spawn('python', ['script.py', ""]);
-
-  pythonProcess.stdout.on('data', (data) => {
-    // Handle the data output from the Python script
-  });
-  
-  pythonProcess.stderr.on('error', (error) => {
-    // Handle any errors that occur during execution of the Python script
-  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+
+  
 
     const handleSendMessage = () => {
       if (inputValue.trim() !== '') {
